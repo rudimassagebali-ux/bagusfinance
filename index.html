@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAGUS MEDRIKA FINANCE</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-box">
+    <h1>BAGUS MEDRIKA FINANCE</h1>
+    <p>Personal Financial Dashboard</p>
+    <input type="password" id="pin-input" placeholder="Masukkan PIN">
+    <button onclick="checkPin()">Masuk</button>
+    <p id="login-error"></p>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app" style="display:none;">
+  <div class="container">
+    <header>
+      <h1>BAGUS MEDRIKA FINANCE</h1>
+      <p>Kelola Keuangan Pribadi Dengan Mudah</p>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </header>
+
+    <!-- DASHBOARD -->
+    <div class="cards">
+      <div class="card">
+        <h3>Saldo</h3>
+        <span id="balance">Rp 0</span>
+      </div>
+      <div class="card income">
+        <h3>Pemasukan</h3>
+        <span id="income">Rp 0</span>
+      </div>
+      <div class="card expense">
+        <h3>Pengeluaran</h3>
+        <span id="expense">Rp 0</span>
+      </div>
+    </div>
+
+    <!-- FILTER -->
+    <section class="filter-section">
+      <h2>Filter Bulan</h2>
+      <input type="month" id="monthFilter" onchange="render()">
+    </section>
+
+    <!-- FORM -->
+    <section class="form-section">
+      <h2>Tambah Transaksi</h2>
+      <input type="date" id="date">
+      <select id="type">
+        <option value="income">Pemasukan</option>
+        <option value="expense">Pengeluaran</option>
+      </select>
+      <input type="text" id="category" placeholder="Kategori">
+      <input type="number" id="amount" placeholder="Nominal">
+      <input type="text" id="description" placeholder="Keterangan">
+      <button onclick="addTransaction()">Simpan</button>
+    </section>
+
+    <!-- SEARCH -->
+    <section class="search-section">
+      <h2>Cari Transaksi</h2>
+      <input type="text" id="search" placeholder="Cari kategori..." onkeyup="render()">
+    </section>
+
+    <!-- ACTION -->
+    <section class="action-section">
+      <button onclick="exportCSV()">Export CSV</button>
+      <button onclick="backupData()">Backup Data</button>
+      <label class="restore-label">
+        Restore Data
+        <input type="file" id="restoreFile" onchange="restoreData(event)">
+      </label>
+    </section>
+
+    <!-- RIWAYAT -->
+    <section class="table-section">
+      <h2>Riwayat Transaksi</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Tanggal</th>
+            <th>Jenis</th>
+            <th>Kategori</th>
+            <th>Nominal</th>
+            <th>Keterangan</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="transaction-list"></tbody>
+      </table>
+    </section>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
